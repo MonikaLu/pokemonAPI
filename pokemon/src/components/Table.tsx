@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridRowData } from '@mui/x-data-grid';
 import { useAppSelector } from '.././redux/hooks';
 import { IStats, PokemonState } from '../redux/pokemonSlice';
@@ -7,29 +7,24 @@ import { POKEMONS } from '../constants';
 
 const MyTable = () => {
     const pokemons = useAppSelector(state => state.pokemons);
+    const [activePokemon, setActivePokemon] = useState<GridRowData | null>(null)
 
     useEffect(() => {
         console.log(pokemons);
     }, [pokemons])
+
+    const handleDetails = (pokemon: GridRowData) => {
+        setActivePokemon((activePokemon && activePokemon.name === pokemon.name) ? null : pokemon);
+    }
 
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 100, disableColumnMenu: true, sortable: true },
         {
             field: 'name', headerName: 'Name', width: 400, disableColumnMenu: true, sortable: false, renderCell: (cellValues) => {
                 return (
-                    <Accordion>
-                        <AccordionSummary
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography>{cellValues.row.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                {cellValues.row.stats.map((stat: IStats) => stat.stat.name)}
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    <div onClick={() => handleDetails(cellValues.row)}>
+                        {cellValues.row.name}
+                    </div>
                 )
             }
         },
@@ -58,6 +53,10 @@ const MyTable = () => {
                 rowsPerPageOptions={[1]}
                 disableSelectionOnClick
             />}
+            {activePokemon &&
+                <div>
+                    <p>{activePokemon.stats.map((stat: IStats) => <p>{stat.stat.name}: {stat.base_stat}</p>)}</p>
+                </div>}
         </div >
     );
 }

@@ -10,8 +10,6 @@ import { RootState } from './redux/store';
 function App() {
   const dispatch = useDispatch();
 
-
-
   const initializeData = () => {
     let results: Array<PokemonAPI> = [];
     POKEMONS.forEach(async (pokemon) => {
