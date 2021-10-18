@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-import BasicTable from './components/BasicTable';
-import Table from './components/Table';
+import MyTable from './components/Table';
+import { getPokemon, initializeData } from './api/getDataFromAPI';
 
 function App() {
+  console.log(initializeData());
+
   return (
     <div className="App">
       <header>
       </header>
-      <Table />
+      <MyTable />
+
     </div>
   );
 }
