@@ -9,7 +9,17 @@ export interface PokemonState {
     picture: string,
     weight: number,
     height: number,
-    type: string[]
+    type: string[],
+    stats: IStats[],
+}
+
+export interface IStats {
+    base_stat: number,
+    effort: number,
+    stat: {
+        name: string,
+        url: string
+    }
 }
 
 interface ITypes {
@@ -39,14 +49,14 @@ export const pokemonSlice = createSlice({
 
             action.payload.forEach((pokemon) => {
                 const pokemonType = pokemon.types.map(item => item.type.name);
-                tempState.push({ id: pokemon.id, picture: pokemon.sprites.front_default, name: pokemon.name, weight: pokemon.weight, height: pokemon.height, type: pokemonType });
+                tempState.push({ id: pokemon.id, picture: pokemon.sprites.front_default, name: pokemon.name, weight: pokemon.weight, height: pokemon.height, type: pokemonType, stats: pokemon.stats });
             })
             return tempState;
         },
         addPokemon(state, action: PayloadAction<PokemonAPI>) {
             const pokemon = action.payload;
             const pokemonType = pokemon.types.map(item => item.type.name);
-            return [...state, { id: pokemon.id, picture: pokemon.sprites.front_default, name: pokemon.name, weight: pokemon.weight, height: pokemon.height, type: pokemonType }];
+            return [...state, { id: pokemon.id, picture: pokemon.sprites.front_default, name: pokemon.name, weight: pokemon.weight, height: pokemon.height, type: pokemonType, stats: pokemon.stats }];
         }
     }
 })
