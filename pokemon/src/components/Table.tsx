@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DataGrid, GridColDef, GridRowData } from '@mui/x-data-grid';
 import { useAppSelector } from '.././redux/hooks';
 import { IStats } from '../redux/pokemonSlice';
@@ -27,7 +27,7 @@ const Table = () => {
         {
             field: 'picture', headerName: 'Picture', width: 130, sortable: false, renderCell: (cellValues) => {
                 return (
-                    <img src={`${cellValues.row.picture}`}></img>
+                    <img alt='' src={`${cellValues.row.picture}`}></img>
                 )
             }
         },
@@ -52,7 +52,7 @@ const Table = () => {
             />}
             {activePokemon &&
                 <div>
-                    <p>{activePokemon.stats.map((stat: IStats) => <p>{stat.stat.name}: {stat.base_stat}</p>)}</p>
+                    {activePokemon.stats.map((stat: IStats) => <p key={stat.stat.name}>{stat.stat.name}: {stat.base_stat}</p>)}
                 </div>}
         </div >
     );
