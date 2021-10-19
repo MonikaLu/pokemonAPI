@@ -34,9 +34,6 @@ export interface PokemonAPI extends PokemonState {
 
 export const initialState: Array<PokemonState> = [];
 
-//TODO: hva skal gjøres her?
-//Hensikt: 
-//Action: deklarere en verdi til PokemonState.
 export const pokemonSlice = createSlice({
     name: 'pokemons',
     initialState,
