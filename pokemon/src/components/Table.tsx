@@ -9,10 +9,6 @@ const Table = () => {
     const pokemons = useAppSelector(state => state.pokemons);
     const [activePokemon, setActivePokemon] = useState<GridRowData | null>(null)
 
-    useEffect(() => {
-        console.log(pokemons);
-    }, [pokemons])
-
     const handleDetails = (pokemon: GridRowData) => {
         setActivePokemon((activePokemon && activePokemon.name === pokemon.name) ? null : pokemon);
     }
