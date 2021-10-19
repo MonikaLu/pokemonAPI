@@ -1,6 +1,3 @@
-//TODO: lage en slice basert på eksempelet på redux toolkit
-//må koble pokemonSlice.reducer i store. 
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface PokemonState {

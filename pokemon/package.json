@@ -54,6 +54,11 @@
     ]
   },
   "devDependencies": {
-    "@types/mui-datatables": "^3.7.7"
+    "@types/enzyme": "^3.10.9",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/mui-datatables": "^3.7.7",
+    "@types/react-test-renderer": "^17.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6"
   }
 }

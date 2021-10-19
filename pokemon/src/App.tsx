@@ -1,14 +1,14 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
-import MyTable from './components/Table';
+import Table from './components/Table';
 import { POKEMONS } from './constants';
-import { addPokemon, PokemonAPI, PokemonState, updatePokemons } from './redux/pokemonSlice';
-import { RootState } from './redux/store';
+import { useAppDispatch } from './redux/hooks';
+import { PokemonAPI, updatePokemons } from './redux/pokemonSlice';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const initializeData = () => {
     let results: Array<PokemonAPI> = [];
@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <header>
       </header>
-      <MyTable />
+      <Table />
     </div>
   );
 }

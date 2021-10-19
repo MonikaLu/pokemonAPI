@@ -1,9 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { POKEMONS } from './constants';
 
-test('renders learn react link', () => {
+test('renders pokemon', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const pokemon = screen.getByText(POKEMONS[0]);
+  expect(pokemon).toBeInTheDocument();
 });

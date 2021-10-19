@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridRowData } from '@mui/x-data-grid';
 import { useAppSelector } from '.././redux/hooks';
-import { IStats, PokemonState } from '../redux/pokemonSlice';
-import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress, Typography } from '@material-ui/core';
+import { IStats } from '../redux/pokemonSlice';
+import { Box, CircularProgress } from '@material-ui/core';
 import { POKEMONS } from '../constants';
 
-const MyTable = () => {
+const Table = () => {
     const pokemons = useAppSelector(state => state.pokemons);
     const [activePokemon, setActivePokemon] = useState<GridRowData | null>(null)
 
@@ -41,7 +41,7 @@ const MyTable = () => {
     ];
 
     return (
-        <div style={{ height: 700, width: '100%' }}>
+        <div style={{ height: 650, width: '100%' }}>
             {pokemons.length < POKEMONS.length && <Box sx={{ display: 'flex' }}>
                 <CircularProgress />
             </Box>
@@ -50,8 +50,9 @@ const MyTable = () => {
                 rows={pokemons}
                 columns={columns}
                 pageSize={10}
-                rowsPerPageOptions={[1]}
+                rowsPerPageOptions={[]}
                 disableSelectionOnClick
+
             />}
             {activePokemon &&
                 <div>
@@ -61,4 +62,4 @@ const MyTable = () => {
     );
 }
 
-export default MyTable;
+export default Table;
